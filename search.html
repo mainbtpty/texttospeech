@@ -1,0 +1,76 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search App</title>
+  <style>
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+    }
+    #searchResults {
+      margin-top: 10px;
+    }
+    .resultItem {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Search App</h1>
+
+  <input type="text" id="searchInput" placeholder="Enter your search query">
+  <div id="searchResults"></div>
+
+  <script>
+    // Sample data for search
+    const data = [
+      'Apple',
+      'Banana',
+      'Orange',
+      'Pineapple',
+      'Grapes',
+      'Strawberry',
+      'Watermelon',
+      'Mango',
+      'Pear',
+      'Kiwi',
+      "What are the type and size of racks that are available for lease in the Business Basic Hosting ?",
+        "I'm really curious to know about the variety and size of racks that the Business Basic Hosting offers for lease. Can you share the details?",
+        "I'm worried about finding the right type and size of racks for lease in the Business Basic Hosting. Can you provide information about the available options?",
+        "Could you please provide details about the type and size of racks that are available for lease in the Business Basic Hosting? I would like to explore my options."
+    ];
+
+    // Function to perform search
+    function performSearch(query) {
+      const results = data.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+      displayResults(results);
+    }
+
+    // Function to display search results
+    function displayResults(results) {
+      const resultsContainer = document.getElementById('searchResults');
+      resultsContainer.innerHTML = '';
+
+      if (results.length === 0) {
+        resultsContainer.innerHTML = 'No results found.';
+      } else {
+        results.forEach(result => {
+          const resultItem = document.createElement('div');
+          resultItem.classList.add('resultItem');
+          resultItem.textContent = result;
+          resultsContainer.appendChild(resultItem);
+        });
+      }
+    }
+
+    // Event listener for search input
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value;
+      performSearch(query);
+    });
+  </script>
+</body>
+</html>
